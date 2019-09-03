@@ -25,7 +25,7 @@ export class RestDataSource {
   }
 
   saveOrder(order: Order): Observable<Order>{
-    return this.http.post<Order>(this.baseUrl + "order", order)
+    return this.http.post<Order>(this.baseUrl + "orders", order)
   }
 
   authenticate(user: string, pass: string): Observable<boolean> {
@@ -54,6 +54,7 @@ export class RestDataSource {
   }
 
   deleteOrder(id: number): Observable<Order> {
+    console.log(this.auth_token);
     return this.http.delete<Order>(`${this.baseUrl}orders/${id}`, this.getOptions());
   }
 

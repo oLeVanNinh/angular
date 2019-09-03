@@ -13,8 +13,8 @@ let routing = RouterModule.forChild([
   { path: "auth", component: AuthComponent },
   { path: "main", component: AdminComponent, canActivate: [AuthGuard],
     children: [
-      { path: "product/:mode/:id", component: ProductEditorComponent },
-      { path: "product/:mode", component: ProductEditorComponent },
+      { path: "products/:mode/:id", component: ProductEditorComponent },
+      { path: "products/:mode", component: ProductEditorComponent },
       { path: "products", component: ProductTableComponent },
       { path: "orders", component: OrderTableComponent },
       { path: "**", redirectTo: "products"}

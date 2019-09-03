@@ -12,6 +12,7 @@ module.exports = function (req, res, next) {
               expiresIn: "1h"
           }, APP_SECRET);
           res.json({success: true, token: token});
+          console.log(token);
       } else {
           res.json({success: false});
       }
@@ -20,13 +21,14 @@ module.exports = function (req, res, next) {
   } else if ((((req.url.startsWith("/api/products") || req.url.startsWith("/products")) || (req.url.startsWith("/api/categories") || req.url.startsWith("/categories"))) && req.method != "GET") || ((req.url.startsWith("/api/orders") || req.url.startsWith("/orders")) && req.method != "POST")) {
       let token = req.headers["authorization"];
       if (token != null && token.startsWith("Bearer<")) {
-        token = token.substring(7, token.length - 1);
+        token = token.substring(7, token.length);
+        console.log(token);
         try {
           jwt.verify(token, APP_SECRET);
           next();
           return;
         }
-        catch(err) {}
+        catch(err) { console.log(err) }
       }
       res.statusCode = 401;
       res.end();

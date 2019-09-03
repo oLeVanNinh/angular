@@ -17,7 +17,6 @@ export class AuthComponent {
   authenticate(form: NgForm) {
     if (form.valid) {
       this.auth.authenticate(this.username, this.password).subscribe(res => {
-        console.log(res);
         if (res) {
           this.router.navigateByUrl("/admin/main");
         }
