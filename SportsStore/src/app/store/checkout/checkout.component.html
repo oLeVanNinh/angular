@@ -26,7 +26,7 @@
     <div class="form-group">
         <label>Address</label>
         <input class="form-control" #city="ngModel" name="address" [(ngModel)]="order.address" required />
-        <span *ngIf="sumitted && city.invalid" class="text-danger">
+        <span *ngIf="submitted && city.invalid" class="text-danger">
           Please enter you address
         </span>
       </div>
@@ -34,7 +34,7 @@
     <div class="form-group">
       <label>City</label>
       <input class="form-control" #city="ngModel" name="city" [(ngModel)]="order.city" required />
-      <span *ngIf="sumitted && city.invalid" class="text-danger">
+      <span *ngIf="submitted && city.invalid" class="text-danger">
         Please enter you city
       </span>
     </div>
