@@ -1,6 +1,8 @@
 import { ApplicationRef, Component } from '@angular/core';
 import { Model } from '../model/repository.model';
 import { Product } from '../model/product.model';
+import { NgForm } from '@angular/forms';
+import { ProductFormGroup } from '../model/form.model';
 
 @Component({
   selector: 'app',
@@ -8,7 +10,12 @@ import { Product } from '../model/product.model';
 })
 
 export class ProductComponent {
+  targetName: string = "Kayak";
+  selectedProduct: string;
   model: Model = new Model();
+  newProduct: Product = new Product();
+  formSubmitted: boolean = false;
+  form: ProductFormGroup = new ProductFormGroup();
 
   constructor(ref: ApplicationRef) {
     (<any>window).appRef = ref;
@@ -33,7 +40,6 @@ export class ProductComponent {
   }
 
   getProductCount(): number {
-    console.log("getProduct Invoked");
     return this.getProducts().length;
   }
 
@@ -41,5 +47,47 @@ export class ProductComponent {
     return product.id;
   }
 
-  targetName: string = "Kayak"
+  getSelectedProduct(product: Product) {
+    return product.name == this.selectedProduct;
+  }
+
+  get jsonProduct() {
+    return JSON.stringify(this.newProduct);
+  }
+
+  addProduct(p: Product) {
+    console.log("New Product: " + this.jsonProduct);
+  }
+
+  getValidationMessages(state: any, thingName?: string) {
+    let thing: string = state.path || thingName;
+    let messages: string[] = [];
+
+    if (state.errors) {
+      for (let errorName in state.errors) {
+        switch (errorName) {
+          case "required":
+            messages.push(`You muse enter a ${thing}`);
+            break;
+          case "minlength":
+            messages.push(`A ${thing} must be at least ${state.errors['minlength'].requiredLength} characters`);
+            break;
+          case "pattern":
+            messages.push(`The ${thing} contains illegal characters`);
+            break;
+        }
+      }
+    }
+    return messages;
+  }
+
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.addProduct(this.newProduct);
+      this.newProduct = new Product();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
 }
