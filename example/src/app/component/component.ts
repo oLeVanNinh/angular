@@ -16,6 +16,7 @@ export class ProductComponent {
   newProduct: Product = new Product();
   formSubmitted: boolean = false;
   form: ProductFormGroup = new ProductFormGroup();
+  showTable: boolean = true;
 
   constructor(ref: ApplicationRef) {
     (<any>window).appRef = ref;
@@ -57,6 +58,10 @@ export class ProductComponent {
 
   addProduct(p: Product) {
     this.model.saveProduct(p);
+  }
+
+  deleteProduct(key: number) {
+    this.model.deleteProduct(key);
   }
 
   getValidationMessages(state: any, thingName?: string) {
