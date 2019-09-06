@@ -1,61 +1,54 @@
 <div class="text-white m-2">
-  <div class="bt-info p-2">
-    There are {{getProductCount()}} products.
-  </div>
+  <div class="row m-2">
+    <div class="col-6">
+      <form novalidate [formGroup]="form"  (ngSubmit)="submitForm(form)" class="text-dark m-2">
+        <style>
+          input.ng-dirty.ng-invalid { border: 1px solid #ff0000 }
+          input.ng-dirty.ng-valid { border: 1px solid #6bc502 }
+        </style>
 
-  <div class="bg-info text-white p-2">
-    Selected Product: {{selectedProduct || '(None)'}}
-  </div>
+        <div class="bg-info mb-2 p-2">
+          Create New Product
+        </div>
 
-  <table class="table table-sm table-bordered mt-1 text-dark">
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price</th>
-    </tr>
+        <div class="form-group" *ngFor="let control of form.productControls">
+          <label class="ml-1">{{control.label}}</label>
+          <input class="form-control" [(ngModel)]="newProduct[control.modelProperty]" name="{{control.modelProperty}}" formControlName="{{control.modelProperty}}" />
 
-    <tr *ngFor="let item of getProducts(); let i = index; let odd = odd; let first = first; let last = last; trackBy:getKey"
-      [class.bg-info]="getSelectedProduct(item)" (mouseover)="selectedProduct=item.name">
-      <td>{{i + 1}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.category}}</td>
-      <td>{{item.price}}</td>
-    </tr>
-  </table>
+          <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || control.dirty) && control.invalid">
+            <li *ngFor="let error of control.getValidationMessages()">
+              {{error}}
+            </li>
+          </ul>
+        </div>
 
-  <div class="m-2">
-    <div class="bg-info text-white mb-2 p-2">
-      Model data: {{jsonProduct}}
+        <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && form.invalid" [class.btn-secondary]="formSubmitted && form.invalid">Create</button>
+      </form>
     </div>
 
+    <div class="col-6">
+      <div class="form-group bg-info text-white p-2">
+        <label>Name</label>
+        <input type="text" class="text-dark" [(paModel)]="newProduct.name" #paModel="paModel" />
+        <div class="bg-primary text-white">Direction: {{paModel.direction}}</div>
+      </div>
 
-    <div class="bg-danger text-white p-2 mb-2" *ngIf="formSubmitted && form.invalid">
-      There are problems with form
+      <table class="table table-bordered table-sm table-striped text-dark">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+
+        <tr *ngFor="let item of getProducts(); let i = index" [pa-attr]="getProducts().length < 6 ? 'bg-success' : 'bg-warning'" [pa-product]="item"
+          (pa-category)="newProduct.category=$event">
+          <td>{{i + 1}}</td>
+          <td>{{item.name}}</td>
+          <td [pa-attr]="item.category == 'Soccer' ? 'bg-info' : null">{{item.category}}</td>
+          <td pa-attr [pa-attr]="'bg-info'">{{item.price}}</td>
+        </tr>
+      </table>
     </div>
-
-    <form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)" class="text-dark m-2">
-      <style>
-        input.ng-dirty.ng-invalid { border: 1px solid #ff0000 }
-        input.ng-dirty.ng-valid { border: 1px solid #6bc502 }
-      </style>
-
-      <div class="bg-info mb-2 p-2">
-        Create New Product
-      </div>
-
-      <div class="form-group" *ngFor="let control of form.productControls">
-        <label class="ml-1">{{control.label}}</label>
-        <input class="form-control" [(ngModel)]="newProduct[control.modelProperty]" name="{{control.modelProperty}}" formControlName="{{control.modelProperty}}" />
-
-        <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || control.dirty) && control.invalid">
-          <li *ngFor="let error of control.getValidationMessages()">
-            {{error}}
-          </li>
-        </ul>
-      </div>
-
-      <button class="btn btn-primary" type="submit" [disabled]="formSubmitted && form.invalid" [class.btn-secondary]="formSubmitted && form.invalid">Create</button>
-    </form>
   </div>
 </div>
