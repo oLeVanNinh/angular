@@ -21,7 +21,7 @@ export class Model {
   }
 
   saveProduct(product: Product) {
-    if (product.id === 0 || product.id === null) {
+    if (product.id == 0 || product.id == null) {
       product.id = this.generateID();
       this.products.push(product);
     }
@@ -44,8 +44,8 @@ export class Model {
   }
 
   private generateID(): number {
-    let candidate = 100;
-    while (this.getProduct(candidate) !== null) {
+    let candidate = 0;
+    while (this.getProduct(candidate) != null) {
       candidate++;
     }
     return candidate;
