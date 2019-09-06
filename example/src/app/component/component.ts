@@ -24,8 +24,22 @@ export class ProductComponent {
     return "p-2 " + (product.price < 50 ? "bg-info" : "bg-warning")
   }
 
-  getClasses(key: number): string {
-    let product = this.model.getProduct(key);
-    return "p-2 " + (product.price < 50 ? "bg-info" : "bg-warning");
+  getProduct(key: number): Product{
+    return this.model.getProduct(key);
   }
+
+  getProducts(): Product[] {
+    return this.model.getProducts();
+  }
+
+  getProductCount(): number {
+    console.log("getProduct Invoked");
+    return this.getProducts().length;
+  }
+
+  getKey(index: number, product: Product) {
+    return product.id;
+  }
+
+  targetName: string = "Kayak"
 }
