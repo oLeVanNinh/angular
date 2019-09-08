@@ -2,9 +2,15 @@
   input.ng-dirty.ng-invalid { border: 1px solid #ff0000 }
   input.ng-dirty.ng-valid { border: 1px solid #6bc502 }
 </style>
-<div class="text-white m-2">
+<div class="text-dark m-2">
   <div class="checkbox">
     <label><input type="checkbox" [(ngModel)]="showTable" />Show Table</label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="darkColor"/> Dark Cell Color
+    </label>
   </div>
 
   <div class="row m-2">
@@ -29,7 +35,7 @@
     </div>
 
     <div class="col-8">
-      <table class="table table-bordered table-sm table-striped text-dark" *paIf="showTable">
+      <table class="table table-bordered table-sm table-striped text-dark" *paIf="showTable" [paCellDarkColor]="darkColor">
         <tr>
           <th></th>
           <th>Name</th>

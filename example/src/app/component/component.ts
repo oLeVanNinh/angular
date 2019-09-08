@@ -17,6 +17,7 @@ export class ProductComponent {
   formSubmitted: boolean = false;
   form: ProductFormGroup = new ProductFormGroup();
   showTable: boolean = true;
+  darkColor: boolean = false;
 
   constructor(ref: ApplicationRef) {
     (<any>window).appRef = ref;
