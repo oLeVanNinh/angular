@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaAttrDirective } from './directives/attr.directive';
 import { PaModel } from './directives/twoway.directive';
+import { PaStructureDirective } from './directives/structure.derective';
+import { PaIteratorDirective } from './directives/iterator.directive';
+import { PaCellColor } from './directives/cellColor.directive';
+import { PaCellColorSwitcher } from './directives/cellColorSwitcher.directive';
 
 // import { AppComponent } from './app.component';
 import { ProductComponent } from './component/component';
 
 @NgModule({
   declarations: [
-    ProductComponent, PaAttrDirective, PaModel
+    ProductComponent, PaAttrDirective, PaModel, PaStructureDirective, PaIteratorDirective, PaCellColor, PaCellColorSwitcher
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule
