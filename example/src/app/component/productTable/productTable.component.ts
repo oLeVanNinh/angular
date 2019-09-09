@@ -2,6 +2,7 @@ import { Component, Input, ViewChildren, QueryList } from '@angular/core';
 import { Model } from '../../model/repository.model';
 import { Product } from '../../model/product.model';
 import { PaCellColor } from '../../directives/cellColor.directive';
+import { DiscountService } from '../../services/discount.service';
 
 @Component({
   selector: 'paProductTable',
@@ -9,8 +10,11 @@ import { PaCellColor } from '../../directives/cellColor.directive';
 })
 
 export class ProductTableComponent {
-  @Input('model') dataModel: Model;
+  // discounter: DiscountService = new DiscountService();
+  // @Input('model') dataModel: Model;
   @ViewChildren(PaCellColor) viewChildren: QueryList<PaCellColor>;
+
+  constructor(private dataModel: Model) {}
 
   getProduct(key: number): Product{
     return this.dataModel.getProduct(key);
