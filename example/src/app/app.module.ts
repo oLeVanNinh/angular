@@ -12,6 +12,13 @@ import { ProductFormComponent } from './component/productForm/productForm.compon
 import { PaToggleView } from './component/toggleView/toggleView.component';
 import { PaAddTaxPipe } from './pipes/addTax.pipe';
 import { PaCategoryFilterPipe } from './pipes/categoryFilter.pipe';
+import { PaDiscountDisplayComponent } from './component/discount/discountDisplay.component';
+import { PaDiscountEditorComponent } from './component/discount/discountEditor.component';
+import { DiscountService } from './services/discount.service';
+import { PaDiscountPipe } from './pipes/discount.pipe';
+import { PaDiscountAmountDirective } from './directives/discountAmount.directive';
+import { SimpleDataSource } from './model/datasource.model';
+import { Model } from './model/repository.model';
 
 // import { AppComponent } from './app.component';
 import { ProductComponent } from './component/component';
@@ -19,12 +26,13 @@ import { ProductComponent } from './component/component';
 @NgModule({
   declarations: [
     ProductComponent, PaAttrDirective, PaModel, PaStructureDirective, PaIteratorDirective, PaCellColor, PaCellColorSwitcher, ProductTableComponent,
-    ProductFormComponent, PaToggleView, PaAddTaxPipe, PaCategoryFilterPipe
+    ProductFormComponent, PaToggleView, PaAddTaxPipe, PaCategoryFilterPipe, PaDiscountDisplayComponent, PaDiscountEditorComponent, PaDiscountPipe,
+    PaDiscountAmountDirective
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DiscountService, SimpleDataSource, Model],
   bootstrap: [ProductComponent]
 })
 export class AppModule { }
