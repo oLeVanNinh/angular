@@ -1,4 +1,24 @@
-<div>There are {{getProducts().length}} items in the model</div>
+<div>
+  <label>Tax Rate: </label>
+  <select [value]="taxRate || 0" (change)="taxRate=$event.target.value">
+    <option value="0">None</option>
+    <option value="10">{{ 0.1 | percent }}</option>
+    <option value="20">{{ 0.2 | percent }}</option>
+    <option value="30">{{ 0.3 | percent }}</option>
+    <option value="50">{{ 0.5 | percent }}</option>
+  </select>
+</div>
+
+<div>
+  <label>Category Filter:</label>
+  <select [(ngModel)]="categoryFilter">
+    <option value="undefined">None</option>
+    <option>Watersports</option>
+    <option>Soccer</option>
+    <option>Chess</option>
+  </select>
+</div>
+
 <table class="table table-bordered table-sm table-striped text-dark" *paIf="showTable" [paCellDarkColor]="darkColor">
   <tr>
     <th></th>
@@ -8,11 +28,11 @@
     <th></th>
   </tr>
 
-  <tr *paFor="let item of getProducts(); let i = index; let odd = odd; let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
+  <tr *paFor="let item of getProducts() | filter:categoryFilter; let i = index; let odd = odd; let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
     <td style="vertical-align: middle">{{i + 1}}</td>
     <td style="vertical-align: middle">{{item.name}}</td>
     <td style="vertical-align: middle">{{item.category}}</td>
-    <td style="vertical-align: middle">{{item.price}}</td>
+    <td style="vertical-align: middle">{{item.price | addTax:(taxRate || 0) | currency:"USD":"symbol":"2.2-2"}}</td>
     <td class="text-center">
       <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">
         Delete
