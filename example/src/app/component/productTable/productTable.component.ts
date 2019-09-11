@@ -3,10 +3,12 @@ import { Model } from '../../model/repository.model';
 import { Product } from '../../model/product.model';
 import { PaCellColor } from '../../directives/cellColor.directive';
 import { DiscountService } from '../../services/discount.service';
+import { LogService } from '../../services/log.service';
 
 @Component({
   selector: 'paProductTable',
-  templateUrl: 'productTable.component.html'
+  templateUrl: 'productTable.component.html',
+  providers: [LogService]
 })
 
 export class ProductTableComponent {

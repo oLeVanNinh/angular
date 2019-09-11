@@ -1,11 +1,13 @@
-import { Component, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Output, EventEmitter, ViewEncapsulation, Inject, SkipSelf } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { ProductFormGroup } from '../../model/form.model';
 import { Model } from '../../model/repository.model';
+import { VALUE_SERVICE } from '../../directives/valueDisplay.directive';
 
 @Component({
   selector: 'paProductForm',
   templateUrl: 'productForm.component.html',
+  viewProviders: [{provide: VALUE_SERVICE, useValue: 'Oranges'}]
   // styleUrls: ['productForm.component.css'],
   // encapsulation: ViewEncapsulation.Emulated
 })
@@ -17,7 +19,8 @@ export class ProductFormComponent {
 
   @Output('paNewProduct') newProductEvent = new EventEmitter<Product>();
 
-  constructor(private model: Model) {}
+  constructor(private model: Model, @Inject(VALUE_SERVICE) @SkipSelf() private serviceValue: string) {
+  }
 
   submitForm(form: any) {
     this.formSumitted = true;
