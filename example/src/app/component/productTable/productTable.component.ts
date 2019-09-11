@@ -1,7 +1,7 @@
 import { Component, Input, ViewChildren, QueryList } from '@angular/core';
 import { Model } from '../../model/repository.model';
 import { Product } from '../../model/product.model';
-import { PaCellColor } from '../../directives/cellColor.directive';
+import { PaCellColor } from '../../common/directives/cellColor.directive';
 import { DiscountService } from '../../services/discount.service';
 import { LogService } from '../../services/log.service';
 

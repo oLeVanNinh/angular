@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, ViewEncapsulation, Inject, SkipSelf } 
 import { Product } from '../../model/product.model';
 import { ProductFormGroup } from '../../model/form.model';
 import { Model } from '../../model/repository.model';
-import { VALUE_SERVICE } from '../../directives/valueDisplay.directive';
+import { VALUE_SERVICE } from '../../common/directives/valueDisplay.directive';
 
 @Component({
   selector: 'paProductForm',

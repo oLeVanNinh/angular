@@ -1,6 +1,6 @@
 import { Pipe, Injectable } from '@angular/core';
-import { DiscountService } from '../services/discount.service';
-import { LogService, LogLevel } from '../services/log.service';
+import { DiscountService } from '../../services/discount.service';
+import { LogService, LogLevel } from '../../services/log.service';
 
 @Pipe({
   name: 'discount',
