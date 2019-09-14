@@ -1,4 +1,4 @@
-<table class="table table-sm">
+<table class="table table-sm table-bordered table-striped">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -13,11 +13,11 @@
         <td style="vertical-align:middle">{{item.category}}</td>
         <td style="vertical-align:middle">{{item.price | currency:"USD"}}</td>
         <td class="text-center">
-          <button class="btn btn-danger btn-sm" (click)="deleteProduct(item.id)">
+          <button class="btn btn-danger btn-sm mr-1" (click)="deleteProduct(item.id)">
             Delete
           </button>
 
-          <button class="btn btn-danger btn-sm" (click)="editProduct(item.id)">
+          <button class="btn btn-warning btn-sm ml-1" (click)="editProduct(item.id)">
             Edit
           </button>
         </td>
