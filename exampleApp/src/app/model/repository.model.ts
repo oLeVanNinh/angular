@@ -5,7 +5,7 @@ import { RestDataSource } from './rest.datasource';
 
 export class Model {
   // private dataSource: SimpleDataSource;
-  private products: Product[];
+  private products: Product[] = new Array<Product>();
   private locator = (p: Product, id: number) => p.id == id;
 
   constructor(private dataSource: RestDataSource) {
