@@ -31,6 +31,6 @@ export class RestDataSource {
     return this.http.request<T>(verb, url, {body: body, headers: new HttpHeaders({
       'Access-Key': '<secret>',
       'Application-Name': 'exampleApp'
-    })}).pipe(delay(2000)).pipe(catchError((error: Response) => throwError(`Network Error: ${error.statusText} ${error.status}`)));
+    })}).pipe(delay(0)).pipe(catchError((error: Response) => throwError(`Network Error: ${error.statusText} ${error.status}`)));
   }
 }

@@ -2,10 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { Model } from '../../model/repository.model';
 import { ActivatedRoute } from "@angular/router";
+import { HighlightTrigger } from "./table.anmations";
 
 @Component({
   selector: 'paTable',
-  templateUrl: 'table.component.html'
+  templateUrl: 'table.component.html',
+  animations: [HighlightTrigger]
 })
 
 export class TableComponent {
@@ -31,5 +33,11 @@ export class TableComponent {
 
   deleteProduct(key: number) {
     this.model.deleteProduct(key);
+  }
+
+  highlightCategory: string = "";
+
+  getRowState(category: string): string {
+    return this.highlightCategory == "" ? "" : this.highlightCategory == category ? "selected" : "notselected"
   }
 }
