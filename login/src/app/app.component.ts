@@ -9,11 +9,4 @@ import { UserFormGroup } from "./form.model";
 })
 export class AppComponent {
   user: User = new User();
-  form: UserFormGroup = new UserFormGroup();
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    debugger;
-  }
 }

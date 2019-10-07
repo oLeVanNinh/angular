@@ -1,5 +1,4 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
 
 export class UserFormControl extends FormControl {
   label: string;
@@ -13,7 +12,7 @@ export class UserFormControl extends FormControl {
 }
 
 export class UserFormGroup extends FormGroup {
-  constructor(private http: HttpClient) {
+  constructor() {
     super({
       username: new UserFormControl("Name", "name", "", Validators.compose([Validators.required, Validators.minLength(6)])),
       password: new UserFormControl("Password", "password", "", Validators.compose([Validators.minLength(6), Validators.required]))
@@ -22,10 +21,5 @@ export class UserFormGroup extends FormGroup {
 
   get userControls(): UserFormControl[] {
     return Object.keys(this.controls).map(k => this.controls[k] as UserFormControl);
-  }
-
-  put() {
-    const body = new FormData();
-    this.http.post("/url", body, {reportProgress: true, observe: 'events'})
   }
 }
