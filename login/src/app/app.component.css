@@ -56,3 +56,11 @@ label {
 .btn-danger {
   background-color: #f44336;
 }
+
+ul {
+  list-style: none;
+}
+
+li {
+  color: red;
+}
